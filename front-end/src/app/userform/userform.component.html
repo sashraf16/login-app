@@ -1,0 +1,56 @@
+<body>
+<div class="container">
+  <h1>Login</h1>
+
+  <div *ngIf="!falselog && username.pristine" class ="alert alert-danger">
+    invalid username or password
+  </div>
+
+  <form (ngSubmit)="onSubmit()" #userform="ngForm">
+    <div class="form-group">
+      <label for="username">username</label>
+      <input
+        required
+        ngModel
+        [(ngModel)]="signer.username"
+        name="username"
+        #username="ngModel"
+        type="text"
+        class="form-control"
+      />
+    </div>
+    <div class="alert alert-danger" *ngIf="username.touched && !username.valid">
+      <div *ngIf="username.errors.required">
+        username is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">password</label>
+      <input
+        required
+        ngModel
+        [(ngModel)]="signer.password"
+        name="password"
+        #password="ngModel"
+        type="password"
+        class="form-control"
+      />
+    </div>
+    <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+      <div *ngIf="password.errors.required">
+        password is required
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-default"
+      [disabled]="!userform.form.valid"
+      (click)="signIn(); userform.reset()"
+    >
+      Sign in
+    </button>
+  </form>
+</div>
+</body>

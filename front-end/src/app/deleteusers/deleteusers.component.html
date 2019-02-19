@@ -1,0 +1,49 @@
+<body>
+  <h3>welcome to delete users</h3>
+  <div class="grid grid-pad">
+    <div class="col-1-4">
+      search by ID
+      <div>
+        <input
+          type="text"
+          name="newname"
+          id="newname"
+          ngModel
+          [(ngModel)]="getID"
+        />
+        <button>search</button>
+      </div>
+      search by username
+      <div>
+        <input
+          type="text"
+          name="newpass"
+          id="newpass"
+          ngModel
+          [(ngModel)]="getusername"
+        />
+        <button (click)="getbyusername()">search</button>
+      </div>
+  
+    or search all users
+    <button (click)="getallusers()">search</button>
+  </div>
+
+  <div class="col-1-4">
+    <div>
+        {{user.userID}}
+        {{user.username}}
+        {{user.password}}
+        {{user.role}}
+    </div>
+    <div *ngFor="let user of allusers">
+        {{user.userID}}
+        {{user.username}}
+        {{user.password}}
+        {{user.role}}
+      <button>select</button>
+    </div>
+    
+  </div>
+  </div>
+</body>

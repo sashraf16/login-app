@@ -1,0 +1,111 @@
+<body>
+<div class="container">
+  <h1>New User Form</h1>
+
+  <div class="alert alert-danger" *ngIf="!tester && username.pristine">
+    username "{{ used }}" is in use
+  </div>
+
+  <form (ngSubmit)="onSubmit()" #userform="ngForm">
+    <div class="form-group">
+      <label for="username">username</label>
+      <input
+        required
+        minlength="4"
+        ngModel
+        name="username"
+        #username="ngModel"
+        type="text"
+        class="form-control"
+        [(ngModel)]="newuser.username"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="username.touched && !username.valid"
+      >
+        <div *ngIf="username.errors.required">
+          username is required
+        </div>
+        <div *ngIf="username.errors.minlength">
+          username should be minimum 4 characters
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">password</label>
+      <input
+        required
+        minlength="8"
+        ngModel
+        name="password"
+        #password="ngModel"
+        type="password"
+        class="form-control"
+        [(ngModel)]="newuser.password"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="password.touched && !password.valid"
+      >
+        <div *ngIf="password.errors.required">
+          password is required
+        </div>
+        <div *ngIf="password.errors.minlength">
+          password should be minimum 8 characters
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="form-group">
+    <label for="password2">confirm password</label>
+    <input
+      required
+      minlength="8"
+      ngModel
+      name="password2"
+      #password2="ngModel"
+      type="text"
+      class="form-control"
+    />
+
+    <div
+      class="alert alert-danger"
+      *ngIf="password2.touched && !password2.valid && password2!=password"
+    >
+      <div *ngIf="password2.errors.required">
+        password is required
+      </div>
+      <div *ngIf="password2.errors.minlength">
+        password should be minimum 8 characters
+      </div>
+      <div *ngIf="password2!=password">
+        passwords should match
+      </div>
+    </div>
+  </div> -->
+
+    <div class="form-group">
+      <label for="role">role</label>
+      <select
+        class="form-control"
+        id="role"
+        required
+        [(ngModel)]="newuser.role"
+        name="role"
+      >
+        <option *ngFor="let type of role" [value]="type"> {{ type }} </option>
+      </select>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-default"
+      [disabled]="!userform.form.valid"
+      (click)="createUser(); userform.reset()"
+    >
+      New User
+    </button>
+  </form>
+</div>
+</body>

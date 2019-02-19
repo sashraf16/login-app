@@ -1,0 +1,61 @@
+<body>
+  <h3>testing component</h3>
+  
+  <div>
+    <p>here</p>
+    {{testuser}}
+    <button (click)="getObs()">click</button>
+  </div>
+  
+  <div class="grid grid-pad">
+    <div class="col-1-4">
+      username
+      <div>
+        <input
+          type="text"
+          name="newname"
+          id="newname"
+          ngModel
+          [(ngModel)]="newname"
+        />
+      </div>
+      password
+      <div>
+        <input
+          type="text"
+          name="newpass"
+          id="newpass"
+          ngModel
+          [(ngModel)]="newpass"
+        />
+      </div>
+  
+      <button (click)="newUser()">create user</button>
+      {{newname}}
+      {{newpass}}
+    </div>
+  
+    <div class="col-1-4">
+      <h3>
+        <input
+          type="text"
+          name="testname"
+          id="testname"
+          ngModel
+          [(ngModel)]="testname"
+        />
+        <button (click)="getUser()">get single user</button>
+        <!-- <p>{{ testname }}</p>
+        <p>{{ singleuser.username }}</p>
+        <p>{{ singleuser.password }}</p> -->
+      </h3>
+    </div>
+  
+    <div class="col-1-4">
+      <h3>
+        <button (click)="getAll()">get all users</button>
+        <p *ngFor="let us of users">{{ us }}</p>
+      </h3>
+    </div>
+  </div>
+  </body>

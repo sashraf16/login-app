@@ -1,0 +1,24 @@
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top navClass" *ngIf="!showNav">
+    <span class="pull-right">
+      {{ loggedin.username }}
+      <div *ngIf="loggedin.username !== 'not signed in'">
+        <button (click)="signOut()">sign out</button>
+      </div>
+    </span>
+    <ul>
+      <a routerLink="/home">home</a>
+    </ul>
+    <ul>
+      <a routerLink="/userform">returning user</a>
+    </ul>
+    <ul>
+      <a routerLink="/newuser">new user</a>
+    </ul>
+    <ul>
+      <a routerLink="/dashboard">dashboard</a>
+    </ul>
+  </nav>
+</body>
+
+<router-outlet></router-outlet>
