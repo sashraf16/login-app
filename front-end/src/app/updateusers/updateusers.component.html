@@ -1,5 +1,7 @@
 <body>
-  <h3>welcome to delete users</h3>
+  <h3>
+    welcome to update users
+  </h3>
   <div class="grid grid-pad">
     <div class="col-1-4">
       search by ID
@@ -24,20 +26,15 @@
         />
         <button (click)="getbyusername()">search</button>
       </div>
-
       or search all users
       <button (click)="getallusers()">search</button>
     </div>
-
     <div class="col-1-4">
       <div>
         {{ user.userID }}
         {{ user.username }}
         {{ user.password }}
         {{ user.role }}
-        <div>
-          <button (click)="deletethisuser()">delete this user</button>
-        </div>
       </div>
       <div *ngFor="let user of allusers">
         {{ user.userID }}
@@ -45,6 +42,35 @@
         {{ user.password }}
         {{ user.role }}
         <button>select</button>
+      </div>
+      <div>
+          <button (click)="selectthisuser()">select this user</button>
+        </div>
+    </div>
+
+    <div class="col-1-4" *ngIf="show">
+      <div>
+        <input
+          type="text"
+          name="newname"
+          id="newname"
+          ngModel
+          [(ngModel)]="user.username"
+        />
+        enter new username
+      </div>
+      <div>
+        <input
+          type="text"
+          name="newname"
+          id="newname"
+          ngModel
+          [(ngModel)]="user.password"
+        />
+        enter new password
+      </div>
+      <div>
+        <button (click)="updatethisuser()">update this user</button>
       </div>
     </div>
   </div>

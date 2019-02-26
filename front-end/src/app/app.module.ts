@@ -13,6 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { TestingComponent } from './testing/testing.component';
 import { DeleteusersComponent } from './deleteusers/deleteusers.component';
+import { UpdateusersComponent } from './updateusers/updateusers.component';
+import { CreateusersComponent } from './createusers/createusers.component';
+import { DashboardgeneralComponent } from './dashboardgeneral/dashboardgeneral.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { DeleteusersComponent } from './deleteusers/deleteusers.component';
     HomeComponent,
     WelcomeComponent,
     TestingComponent,
-    DeleteusersComponent
+    DeleteusersComponent,
+    UpdateusersComponent,
+    CreateusersComponent,
+    DashboardgeneralComponent
   ],
   imports: [
     BrowserModule,

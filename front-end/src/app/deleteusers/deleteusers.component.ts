@@ -15,18 +15,24 @@ export class DeleteusersComponent implements OnInit {
   user: User;
   allusers: User[];
 
+  result:any;
+
   constructor(private _uss: UserService) { }
 
   getbyID(){
 
   }
 
-  getbyusername(){
+  getbyusername() {
     this._uss.getUser(this.getusername).subscribe(data => this.user = data);
   }
 
-  getallusers(){
+  getallusers() {
     this._uss.getAll().subscribe(data=> this.allusers = data);
+  }
+
+  deletethisuser() {
+    this._uss.deleteUser(this.user).subscribe(data=> this.result = data);
   }
 
   ngOnInit() {

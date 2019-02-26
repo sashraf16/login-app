@@ -64,8 +64,8 @@ public class UserController {
 
     @RequestMapping(value = "/users/verify", method = POST)
     @CrossOrigin(origins = "http://localhost:4200")
-    public boolean verifyLog(@RequestBody User loguser){
-        boolean result;
+    public User verifyLog(@RequestBody User loguser){
+        User result;
         result = _userService.verifyUser(loguser);
         return result;
 //        try {
@@ -90,16 +90,20 @@ public class UserController {
 //            System.out.println("error: " + e);
 //            return false;
 //        }
-
-
     }
 
     @RequestMapping(value = "/users/delete", method = POST)
     @CrossOrigin(origins = "http://localhost:4200")
     public boolean deleteUser(@RequestBody User loguser)
     {
-        _userService.deleteUser(loguser);
-        return true;
+        return _userService.deleteUser(loguser);
+    }
+
+    @RequestMapping(value = "/users/update", method = POST)
+    @CrossOrigin(origins = "http://localhost:4200")
+    public boolean updateUser (@RequestBody User upuser)
+    {
+        return _userService.updateUser(upuser);
     }
 
 

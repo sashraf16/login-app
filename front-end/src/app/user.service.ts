@@ -9,17 +9,17 @@ import { post } from "selenium-webdriver/http";
 })
 export class UserService {
   users: Array<User> = [];
-  user1 = new User(1,"not signed in", "password", 3);
+  user1 = new User(-1, "not signed in", "not signed pass", -1);
 
   private _loggeduser: User;
 
-  private subject = new Subject<User>();
-  currentsubject = this.subject.asObservable();
+  // private subject = new Subject<User>();
+  // currentsubject = this.subject.asObservable();
 
   private _userSource = new BehaviorSubject<User>(this.user1);
   _currentUser = this._userSource.asObservable();
 
-  user2 = new User(1,"user2", "pass2", 3);
+  // user2 = new User(1, "user2", "pass2", 3);
 
   _url = "http://localhost:8080/users";
 
@@ -48,5 +48,13 @@ export class UserService {
 
   validateUser(user: User): any {
     return this.http.post(this._url + "/verify", user);
+  }
+
+  deleteUser(user: User): any {
+    return this.http.post(this._url + "/delete", user);
+  }
+
+  updateUser(user: User): any {
+    return this.http.post(this._url + "/update", user);
   }
 }

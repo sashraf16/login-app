@@ -27,7 +27,7 @@ public class UserService {
         return _userRepo.findById(username).orElse(null);
     }
 
-    public boolean verifyUser(User user) {
+    public User verifyUser(User user) {
         try {
             String attemptuser = user.getUsername();
             String attemptpass = user.getPassword();
@@ -38,14 +38,16 @@ public class UserService {
             String dbpass = dbacc.getPassword();
 
             if (dbpass.equals(attemptpass)) {
-                return true;
+                return dbacc;
             } else {
-                return false;
+                user.setUsername("not signed in");
+                return user;
             }
         }
         catch (Exception e) {
             System.out.println("error in validation: " + e);
-            return false;
+            user.setUsername("not signed in");
+            return user;
         }
     }
 
@@ -78,13 +80,36 @@ public class UserService {
 
     public boolean deleteUser(User user) {
         try{
-            _userRepo.delete(user);
-            return true;
+             if (_userRepo.existsById(user.getUsername())) {
+                 _userRepo.delete(user);
+                 return true;
+             }
+             else {
+                 return false;
+             }
         }
         catch (Exception e)
         {
             System.out.println("error: " + e);
             return false;
         }
+    }
+
+    public boolean updateUser(User user)
+    {
+        Optional<User> result = _userRepo.findById(user.getUsername());
+        System.out.println(result);
+        if (result.equals(Optional.empty()))
+        {
+            System.out.println("cannot find that user");
+            return false;
+        }
+        else
+        {
+            System.out.println("found and updated");
+            _userRepo.save(user);
+            return true;
+        }
+
     }
 }

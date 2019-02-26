@@ -52,8 +52,9 @@ export class UserformComponent implements OnInit {
     this.urole = user.role;
   }
 
-  trueLog() {
-    this.send = new User(0,this.username, this.password, this.urole);
+  trueLog(data: User) {
+    this.send = new User(data.userID,data.username, data.password, data.role);
+    console.log(this.send);
     this._uss.changeUser(this.send);
   }
 
@@ -61,8 +62,9 @@ export class UserformComponent implements OnInit {
     this.showUser(this.signer);
 
     this._uss.validateUser(this.signer).subscribe(data => {
-      if (data === true) {
-        this.trueLog();
+      if (data.username !== "not signed in") {
+        console.log(data.username);
+        this.trueLog(data);
         this._router.navigate(["/", "welcome"]);
       } else {
         this.falseLog();

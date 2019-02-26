@@ -23,5 +23,13 @@ export class DashboardComponent implements OnInit {
     this._router.navigate(["/", "deleteusers"]);
   }
 
+  updateUsers() {
+    this._router.navigate(["/", "updateusers"]);
+  }
+
+  createUsers() {
+    this._router.navigate(["/", "createusers"]);
+  }
+
  
 }
