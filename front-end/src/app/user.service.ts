@@ -13,9 +13,6 @@ export class UserService {
 
   private _loggeduser: User;
 
-  // private subject = new Subject<User>();
-  // currentsubject = this.subject.asObservable();
-
   private _userSource = new BehaviorSubject<User>(this.user1);
   _currentUser = this._userSource.asObservable();
 

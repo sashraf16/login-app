@@ -27,7 +27,7 @@ export class WelcomeComponent implements OnInit {
   constructor(private _uss: UserService, private _giphy: GiphyService) {}
 
   ngOnInit() {
-    this._uss.currentsubject.subscribe(data => {
+    this._uss._currentUser.subscribe(data => {
       this.loggeduser = data;
       console.log(this.loggeduser);
     });
